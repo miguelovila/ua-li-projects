@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <!-- Meta Tags Necessárias -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- CSS do Bootstrap -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <!-- CSS do FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- CSS Personalizado -->
+    <link rel="stylesheet" href="./css/global-style.css" />
+    <link rel="stylesheet" href="./css/navbar-style.css" />
+    <link rel="stylesheet" href="./css/collection-style.css" />
+    <script src="./js/refresher.js"></script>
+    <!-- JS Personalizado -->
+    <script src="./js/navbar.js"></script>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./img/favicon.png">
+    <title>Perfil</title>
+</head>
+
+<body data-bs-spy="scroll" data-bs-offset="200" data-bs-target=".navbar">
+    <main>
+        <script>
+            async function getProfile(bodyhtml, token) {
+                const response = await (await fetch(`./api/cromos/profile/` + token)).json();
+                if (response.status == 'OK1' ) {
+                    newbody = bodyhtml.replace('<div class="substitute-target"></div>', `<h1 class="title1-light mb-4">Meu Perfil</h1><p class="paragraph-light">Não existem imagens no perfil</p>`);
+                    document.getElementsByTagName('main')[0].innerHTML = newbody;
+                } else {
+                    title = `<h1 class="title1-light mb-4">Meu Perfil</h1>`;
+                    elements = title + '<div class="row">';
+                    for (id in response) {
+                        if (response[id][6] == null) {
+                            paragraph = 'sem proprietário';
+                        } else {
+                            paragraph = 'pertence a ' + response[id][6];
+                        }
+                        elements += `
+                        <div class="col-md-4 mb-4">
+                            <a href="./image/${response[id][0]}" class="acard">
+                                <div class="card">
+                                    <img class="card-img-top" src="./api/cromos/${response[id][0]}/image" alt="imagem da coleção 1">
+                                    <div class="card-body">
+                                        <h5 class="card-title subtitle-card">${response[id][4]}</h5>
+                                        <p class="card-text card-title paragraph-card">${paragraph}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>`;
+                    }
+                    elements += '</div>';
+                    newbody = bodyhtml.replace('<div class="substitute-target"></div>', elements);
+                    document.getElementsByTagName('main')[0].innerHTML = newbody;
+                };
+            };
+
+            async function verify() {
+                const options = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ "token": localStorage.getItem('token') })
+                };
+                const response = await (await fetch('./api/pages/profile', options)).json();
+                if (response.status == 'OK') {
+                    getProfile(response.body, localStorage.getItem('token'));
+                } else {
+                    window.location.href = './';
+                }
+            };
+            verify();
+        </script>
+    </main>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/jquery-3.6.0.min.js"></script>
+</body>
+
+</html>

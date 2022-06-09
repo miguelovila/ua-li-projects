@@ -1,0 +1,28 @@
+header {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paragraph-light {
+  font-weight: 500;
+  margin: auto;
+  text-align: center;
+}
+
+.title1-light {
+  margin-bottom: 2rem;
+}
+
+.btn {
+  max-width: 200px;
+}
+
+#a-button-action {
+  display: contents;
+}
+
+#logo {
+  max-width: 55%; 
+}

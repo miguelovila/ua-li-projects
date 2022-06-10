@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <!-- Meta Tags Necessárias -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- CSS do Bootstrap -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <!-- CSS do FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- CSS Personalizado -->
+    <link rel="stylesheet" href="./css/global-style.css" />
+    <link rel="stylesheet" href="./css/navbar-style.css" />
+    <link rel="stylesheet" href="./css/landing-style.css" />
+    <!-- JS Personalizado -->
+    <script src="./js/navbar.js"></script>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./img/favicon.png">
+    <title>Caderneta Digital</title>
+</head>
+<script>
+    const url = window.location.href;
+    if (url.endsWith("labiproj5")) {
+        window.location.href = window.location.href +  "/";
+    }
+</script>
+
+<body data-bs-spy="scroll" data-bs-offset="200" data-bs-target=".navbar">
+    <!-- Barra de Navegação -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container nav-cont">
+            <a class="navbar-brand" href="./" onclick="esconder(false)"><img src="./img/logo.png" alt=""></a>
+            <button id="toggler" class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./about" onclick="esconder()">Sobre</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Header -->
+    <header id="topo">
+        <div class="container text-center">
+                <img id= "logo" class="mb-4" src="./img/logo.png" alt="logo">
+                <p class="paragraph-light">Uma simples</p>
+                <h1 class="title1-light">Caderneta Digital</h1>
+                <main>
+                    <script>
+                        async function verify() {
+                            const options = {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ "token": localStorage.getItem('token') })
+                            };
+                            const response = await (await fetch('./api/pages/landing', options)).json();
+                            if (response.status == 'OK1') {
+                                document.getElementsByTagName('main')[0].innerHTML = response.body;
+                            } else {
+                                document.getElementsByTagName('main')[0].innerHTML = response.body;
+                            }
+                        };
+                        verify();
+                    </script>
+                </main>
+            </div>
+    </header>
+    <!-- JavaScript do Bootstrap -->
+    <script src="./js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

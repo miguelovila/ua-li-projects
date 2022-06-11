@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <!-- Meta Tags Necessárias -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- CSS do Bootstrap -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <!-- CSS do FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <!-- CSS Personalizado -->
+    <link rel="stylesheet" href="./css/global-style.css" />
+    <link rel="stylesheet" href="./css/navbar-style.css" />
+    <link rel="stylesheet" href="./css/upload-style.css" />
+    <!-- JS Personalizado -->
+    <script src="./js/navbar.js"></script>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./img/favicon.png" />
+    <title>Carregar Imagem</title>
+</head>
+
+<body data-bs-spy="scroll" data-bs-offset="200" data-bs-target=".navbar">
+    <main>
+        <script>
+            async function verify() {
+                const options = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ "token": localStorage.getItem('token') })
+                };
+                const response = await (await fetch('./api/pages/upload', options)).json();
+                if (response.status == 'OK') {
+                    document.getElementsByTagName('main')[0].innerHTML = response.body;
+                } else {
+                    window.location.href = './';
+                }
+            };
+            verify();
+        </script>
+    </main>
+    <script src="./js/upload.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/jquery-3.6.0.min.js"></script>
+</body>
+
+</html>

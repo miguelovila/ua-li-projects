@@ -1,0 +1,11 @@
+.img-circular {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    border-radius: 100px;
+    margin-bottom: 1rem;
+  }
+
+.icon-codeua{
+  width: 50%
+}

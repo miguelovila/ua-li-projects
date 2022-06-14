@@ -1,0 +1,143 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+
+html {
+  scroll-padding-top: 100px;
+}
+
+body {
+  line-height: 1.8;
+  font-size: 140%;
+  font-family: "Montserrat", sans-serif;
+  user-select: none;
+  color: #ffffff;
+  background: linear-gradient(90deg, #1d1d1d 25px, transparent 1%) center, linear-gradient(#1d1d1d 25px, transparent 1%) center, #5c5c5c;
+  background-size: 26px 26px;
+}
+
+.section-space {
+  margin-top: 50px;
+}
+
+a {
+  font-weight: 700;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #d32f2f;
+}
+
+a:active {
+  color: #d32f2f;
+}
+
+.title1-dark {
+  text-transform: uppercase;
+  color: #000;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.title1-light {
+  text-transform: uppercase;
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.title2-dark {
+  text-transform: uppercase;
+  color: #000;
+  font-weight: 600;
+}
+
+.title2-light {
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.subtitle-dark {
+  color: #000;
+  text-align: center;
+}
+
+.subtitle-light {
+  color: #ffffff;
+  text-align: center;
+}
+
+.paragraph-dark {
+  color: #000;
+  text-align: justify;
+  font-size: 90%;
+}
+
+.paragraph-light {
+  color: #ffffff;
+  text-align: justify;
+  font-size: 90%;
+}
+
+.secondary-text {
+  font-size: 80%;
+  line-height: normal;
+}
+
+img {
+  width: 100%;
+}
+
+.title-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.btn-primary {
+  background-color: #d32f2f;
+  padding: 0.7rem 1.2rem;
+  font-weight: 600;
+  font-size: 17px;
+  border-style: none;
+}
+
+.btn-primary:hover {
+  background-color: #b42b2b;
+}
+
+.btn-primary:focus,.btn-primary:active {
+  outline: none !important;
+  background-color: #d32f2f;
+  box-shadow: none !important;
+}
+
+.space-navbar {
+  margin-top: 100px;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  color: #000;
+}
+
+
+::selection {
+  background: #d32f2f;
+  color: #fff;
+}
+
+
+footer{
+  margin-top: 0.5rem;
+  bottom: 0;
+  width:100%;
+}
+
+.footer-text{
+  text-align:center;
+  color:#fff;
+  font-size:70%;
+}

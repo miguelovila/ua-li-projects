@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <!-- Meta Tags Necessárias -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- CSS do Bootstrap -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <!-- CSS do FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- CSS Personalizado -->
+    <link rel="stylesheet" href="../css/global-style.css" />
+    <link rel="stylesheet" href="../css/navbar-style.css" />
+    <link rel="stylesheet" href="../css/image-style.css" />
+    <!-- JS Personalizado -->
+    <script src="../js/navbar.js"></script>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../img/favicon.png">
+    <title>Imagem</title>
+</head>
+
+<body data-bs-spy="scroll" data-bs-offset="200" data-bs-target=".navbar">
+    <main>
+        <script>
+            async function getImage(pagetype, bodyhtml) {
+                const response = await (await fetch(`../api/cromos/data/` + window.location.href.substring(window.location.href.lastIndexOf('/') + 1))).json();
+
+                owned_image_form = `
+                <div class="input-group justify-content-center">
+                    <input class="form-control py-2 border-right-0 border shadow-none" type="text" placeholder="Utilizador" id="utilizador">
+                    <span id="copyButton" class="input-group-addon btn" title="Clica para copiar"><i id="copy-icon" class="fa-solid fa-arrow-right-arrow-left"></i></span>
+                </div>`;
+
+                free_image_form = `
+                <button id="keep-button" type="button" class="btn btn-primary btn-block">Ficar com a Imagem <i class="fa-solid fa-floppy-disk" id="keep-icon"></i></button>
+                `;
+
+                not_owned_image_form = `
+                <div class="input-group justify-content-center">
+                    <input disabled class="form-control py-2 border-right-0 border shadow-none" type="text" placeholder="Utilizador" id="utilizador">
+                    <span id="copyButton" class="input-group-addon btn disabled" title="Clica para copiar"><i id="copy-icon" class="fa-solid fa-arrow-right-arrow-left"></i></span>
+                </div>`;
+                
+                logs = ""
+                historyj = JSON.parse(response[0][5])
+                for (entry in historyj) {
+                    if (historyj[entry]["action"] == "upload") {
+                        ptext = new Date(historyj[entry]["ts"]*1000).toLocaleString('pt-PT') + " - " + historyj[entry]["username"] + " carregou a imagem";
+                    } else {
+                        ptext = new Date(historyj[entry]["ts"]*1000).toLocaleString('pt-PT') + " - " + historyj[entry]["username"] + " tornou-se dono";
+                    }
+                    logs += `<p class="paragraph">${ptext}</p>`;
+                }
+
+                form = ``
+                if (pagetype == "owner") {
+                    form = owned_image_form
+                } else if (pagetype == "free") {
+                    form = free_image_form
+                } else if (pagetype == "viewer") {
+                    form = not_owned_image_form
+                }
+
+                if (response.status == 'ERROR') {
+                    window.location.href = '../';
+                } else {
+                    title = `<h1 class="title1-light mb-4">Imagem: ${response[0][4]}</h1>`;
+                    elements = title;
+                    elements += `
+                    <div class="img-section row mb-4">
+                        <div class="col-md-5 year-container order-md-2">
+                            <h4 class="paragraph-light">Histórico:</h4>
+                            <div class="history-section mb-3">
+                                ${logs}
+                            </div>
+                            <div class="form-section">
+                                <h4 class="paragraph-light">Transferir:</h4>
+                                ${form}
+                            </div>
+                        </div>
+                        <div class="text-section col-md-7 order-md-1">
+                            <img class="card-img-top" src="../api/cromos/${response[0][0]}/image" alt="imagem da coleção 1">
+                        </div>
+                    </div>`;
+                    newbody = bodyhtml.replace('<div class="substitute-target"></div>', elements);
+                    document.getElementsByTagName('main')[0].innerHTML = newbody;
+                };
+            };
+
+            async function verify() {
+                const options = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ "token": localStorage.getItem('token'), "img_id": window.location.href.substring(window.location.href.lastIndexOf('/') + 1)})
+                };
+                const response = await (await fetch('../api/pages/image', options)).json();
+                if (response.status == 'OK') {
+                    getImage(response.type, response.body);
+                } else {
+                    window.location.href = '../';
+                }
+            };
+            verify();
+        </script>
+    </main>
+    <script src="../js/imagem.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+</body>
+
+</html>

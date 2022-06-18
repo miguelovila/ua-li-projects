@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <!-- Meta Tags Necessárias -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- CSS do Bootstrap -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <!-- CSS do FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- CSS Personalizado -->
+    <link rel="stylesheet" href="./css/global-style.css" />
+    <link rel="stylesheet" href="./css/navbar-style.css" />
+    <link rel="stylesheet" href="./css/about-style.css" />
+    <!-- JS Personalizado -->
+    <script src="./js/navbar.js"></script>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./img/favicon.png">
+    <title>Sobre</title>
+</head>
+
+<body data-bs-spy="scroll" data-bs-offset="200" data-bs-target=".navbar">
+    <!-- Barra de Navegação -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container nav-cont">
+            <a class="navbar-brand" href="./" onclick="esconder(false)"><img src="./img/logo.png" alt=""></a>
+            <button id="toggler" class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./about" onclick="esconder()">Sobre</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Header -->
+    <header>
+        <div class="space-navbar container text-center">
+            <div class="row justify-content-center">
+                <h1 class="title1-light mb-4">Sobre</h1>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-3 mb-4">
+                    <img class="img-circular" src="./img/martim-lindo.jpg" alt="Martim Carvalho">
+                    <h5 class="paragraph-light text-center">Martim Carvalho</h5>
+                    <p class="paragraph-light text-center">NºMec: 108749
+                        <br>
+                        <a class="paragraph-light text-center" href="mailto:martimhcarvalho@ua.pt">martimhcarvalho@ua.pt</a>
+                    </p>
+                </div>
+                <div class="col-md-3 mb-4 justify-content-center">
+                    <img class="img-circular" src="./img/diogo-lindo.jpg" alt="Diogo Silva">
+                    <h5 class="paragraph-light text-center">Diogo Silva</h5>
+                    <p class="paragraph-light text-center">NºMec: 108212
+                        <br>
+                        <a class="paragraph-light text-center" href="mailto:dsgps@ua.pt">dsgps@ua.pt</a>
+                    </p>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <img class="img-circular" src="./img/vila-lindo.jpeg" alt="Miguel Vila">
+                    <h5 class="paragraph-light text-center">Miguel Vila</h5>
+                    <p class="paragraph-light text-center">NºMec: 107276
+                        <br>
+                        <a class="paragraph-light text-center" href="mailto:miguelovila@ua.pt">miguelovila@ua.pt</a>
+                    </p>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <img class="img-circular" src="./img/reis-lindo.jpg" alt="Miguel Reis">
+                    <h5 class="paragraph-light text-center">Miguel Reis</h5>
+                    <p class="paragraph-light text-center">NºMec: 108545
+                        <br>
+                        <a class="paragraph-light text-center" href="mailto:mreis@ua.pt">mreis@ua.pt</a>
+                    </p>
+                </div>
+            </div>
+            <p class="paragraph-light justify-text">Durante este projeto houve bastante empenho pelos autores na criação desta <i>webapp</i> dinâmica e responsiva. Para isto dedicou-se inúmeras horas de pesquisa e discussão de ideias para conseguir alcançar o resultado pretendido. Dessa forma considera-se que o envolvimento dos elementos do grupo tenha sido igual, ou seja, 25% para cada um.</p>
+            <p class="paragraph-light justify-text">Os alunos Martim Carvalho e Diogo Silva foram responsáveis pela elaboração do relatório do projeto e estiveram a acompanhar o processo de desenvolvimento testando a plataforma exaustivamente. Os alunos Miguel Vila e Miguel Reis ficaram encarregados do desenvolvimento <i>frontend</i> e <i>backend</i> de toda a aplicação web, tendo também testado exaustivamente a plataforma desenvolvida.</p>
+        </div>
+    </header>
+
+    <section class="section-space">
+        <div class="container text-center mb-4">
+            <a id="a-button-action" href="http://code.ua.pt/projects/labi2022g5"><button id="button-action" type="button"
+                    class="btn btn-primary"><img class="icon-codeua"
+                        src="./img/logo-codeuaw.png"></button></a>
+        </div>
+    </section>
+
+    <footer class="footer-light section-space">
+        <div class="container text-center">
+            <div class="footer-text">
+                <p>Copyright <i class="fa-regular fa-copyright"></i> XIMAGENS</p>
+            </div>
+        </div>
+
+    </footer>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

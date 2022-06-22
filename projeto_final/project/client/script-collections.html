@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <!-- Meta Tags Necessárias -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- CSS do Bootstrap -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <!-- CSS do FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- CSS Personalizado -->
+    <link rel="stylesheet" href="./css/global-style.css" />
+    <link rel="stylesheet" href="./css/navbar-style.css" />
+    <link rel="stylesheet" href="./css/collections-style.css" />
+    <!-- JS Personalizado -->
+    <script src="./js/navbar.js"></script>
+    <script src="./js/refresher.js"></script>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./img/favicon.png">
+    <title>Coleções</title>
+</head>
+
+<body data-bs-spy="scroll" data-bs-offset="200" data-bs-target=".navbar">
+    <main>
+        <script>
+            async function getCollections(bodyhtml) {
+                const options = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ "token": localStorage.getItem('token') })
+                }
+                const response = await (await fetch('./api/cromos/collections', options)).json();
+                if (response.status == 'ERROR') {
+                    window.location.href = './';
+                } else {
+                    elements = '<div class="row">';
+                    if (response.message == 'Got collections') {
+                        for (id in response.body) {
+                            const responseCollection = await (await fetch(`./api/cromos/${response.body[id][0]}`)).json();
+                            const firstImage = responseCollection[0][0];
+
+                            elements += `
+                            <div class="col-md-4 mb-4">
+                                <a href="./collections/${response.body[id][0]}" class="acard">
+                                    <div class="card">
+                                        <img class="card-img-top" src="./api/cromos/${firstImage}/image" alt="imagem da coleção 1">
+                                        <div class="card-body">
+                                            <h5 class="card-title subtitle-card">${response.body[id][2]}</h5>
+                                            <p class="card-text card-title paragraph-card">criado por ${response.body[id][1]}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>`;
+                        }
+
+                        elements += '</div>';
+                    } else {
+                        elements = '<p class="paragraph-light">Não existem coleções</p>';
+                    }
+                    newbody = bodyhtml.replace('<div class="substitute-target"></div>', elements);
+                    document.getElementsByTagName('main')[0].innerHTML = newbody;
+                };
+            };
+
+            async function verify() {
+                const options = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ "token": localStorage.getItem('token') })
+                };
+                const response = await (await fetch('./api/pages/collections', options)).json();
+                if (response.status == 'OK') {
+                    getCollections(response.body);
+                } else {
+                    window.location.href = './';
+                }
+            };
+            verify();
+        </script>
+    </main>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/jquery-3.6.0.min.js"></script>
+</body>
+
+</html>

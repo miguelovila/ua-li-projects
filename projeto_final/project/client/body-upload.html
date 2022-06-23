@@ -1,0 +1,59 @@
+<!-- Barra de Navegação -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container nav-cont">
+        <a class="navbar-brand" href="./" onclick="esconder(false)"><img src="./img/logo.png" alt=""></a>
+        <button id="toggler" class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="./collections" onclick="esconder()">Coleções</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./upload" onclick="esconder()">Carregar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./profile" onclick="esconder()">Perfil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="window.localStorage.removeItem('token');window.location.href = './';">Sair</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+</nav>
+<div class="space-navbar container text-center">
+    <h1 class="title1-light mb-4">Carrega uma Imagem</h1>
+    <section class="row justify-content-center">
+        <form class="upload-form" autocomplete="off">
+            <label class="image-area mb-4" for="upload"><i class="fa-solid fa-upload fa-2xl"></i><input id="upload" type="file" accept="image/png, image/gif, image/jpeg" onchange="readURL(this);"/></label>
+            <input class="form-control py-2 border-right-0 border mb-4 shadow-none" type="text" id="imagename" placeholder="Nome da imagem"/>
+            <input class="form-control py-2 border-right-0 border mb-4 shadow-none" placeholder="Nome da coleção" id="collectionname" />
+            <button id="upload-button" class="btn btn-primary btn-block mb-4">Carregar Imagem <i class="fa-solid fa-plus"></i></button>
+        </form>
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalCenterTitle">Erro</h5>
+                </div>
+                <div class="modal-body">
+                  <p class="paragraph-dark">Já existe uma imagem igual na plataforma.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" onClick="window.location.reload();">OK</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </section>
+</div>
+<footer class="footer-light">
+    <div class="text-center">
+        <div class="footer-text">
+            <p>Copyright <i class="fa-regular fa-copyright"></i> XIMAGENS</p>
+        </div>
+    </div>
+</footer>
